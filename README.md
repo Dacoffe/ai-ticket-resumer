@@ -1,34 +1,34 @@
 # AI Ticket Resumer
 
-Aplicação full-stack para criação, análise e gestão de tickets de suporte com recurso a Inteligência Artificial.
+A full-stack application for creating, analyzing, and managing support tickets with the help of Artificial Intelligence.
 
-O projeto está dividido em duas aplicações independentes:
+The project is divided into two independent applications:
 
-- **Backend**: API desenvolvida com Laravel, responsável pela persistência dos tickets e pela análise através de um modelo Gemini.
-- **Frontend**: interface desenvolvida com Vue, responsável pela criação, consulta, filtragem e reanálise dos tickets.
+- **Backend**: a Laravel API responsible for ticket persistence and AI-powered analysis using a Gemini model.
+- **Frontend**: a Vue interface for creating, reviewing, filtering, and reanalyzing tickets.
 
-Cada aplicação possui o seu próprio README com detalhes específicos. Este documento apresenta a visão geral do projeto e os passos necessários para executar os dois componentes em conjunto.
+Each application has its own README with more specific information. This document provides an overview of the project and explains how to run both components together.
 
-## Estrutura do projeto
+## Project structure
 
 ```text
 ai-ticket-resumer/
-├── ticket-ai-backend/     # API Laravel e integração com IA
-├── ticket-ai-frontend/    # Interface Vue + TypeScript
-└── README.md              # Documentação geral do projeto
+├── ticket-ai-backend/     # Laravel API and AI integration
+├── ticket-ai-frontend/    # Vue + TypeScript interface
+└── README.md              # General project documentation
 ```
 
-## Funcionalidades principais
+## Main features
 
-- Criação de tickets de suporte.
-- Análise automática dos tickets com Inteligência Artificial.
-- Identificação ou classificação por categoria e prioridade.
-- Listagem dos tickets existentes.
-- Filtragem de tickets por categoria e prioridade.
-- Reanálise de tickets já existentes.
-- Comunicação entre o frontend Vue e a API Laravel através de endpoints HTTP.
+- Create support tickets.
+- Automatically analyze tickets using Artificial Intelligence.
+- Classify tickets by category and priority.
+- List existing tickets.
+- Filter tickets by category and priority.
+- Reanalyze existing tickets.
+- Connect the Vue frontend to the Laravel API through HTTP endpoints.
 
-## Tecnologias utilizadas
+## Technologies
 
 ### Backend
 
@@ -36,9 +36,9 @@ ai-ticket-resumer/
 - Laravel 13
 - SQLite
 - Composer
-- Gemini através de uma API compatível com OpenAI
-- Pest para testes
-- Laravel Pint e PHPStan para qualidade e análise estática
+- Gemini through an OpenAI-compatible API
+- Pest for testing
+- Laravel Pint and PHPStan for code quality and static analysis
 
 ### Frontend
 
@@ -48,37 +48,37 @@ ai-ticket-resumer/
 - Tailwind CSS 4
 - npm
 
-## Requisitos
+## Requirements
 
-Antes de começar, certifique-se de que tem instalado:
+Before getting started, make sure you have the following installed:
 
-- PHP 8.3 ou superior
+- PHP 8.3 or later
 - Composer
-- Node.js 20 ou superior
+- Node.js 20 or later
 - npm
-- Uma chave de API do Gemini
+- A Gemini API key
 
-## Instalação
+## Installation
 
-### 1. Clonar o repositório
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Dacoffe/ai-ticket-resumer.git
 cd ai-ticket-resumer
 ```
 
-### 2. Configurar o backend
+### 2. Set up the backend
 
-Entre na pasta do backend e execute o setup automático:
+Go to the backend directory and run the setup command:
 
 ```bash
 cd ticket-ai-backend
 composer run setup
 ```
 
-Este comando instala as dependências, cria o ficheiro `.env`, gera a chave da aplicação, executa as migrations, instala as dependências JavaScript e gera os assets.
+This command installs the dependencies, creates the `.env` file, generates the application key, runs the database migrations, installs JavaScript dependencies, and builds the assets.
 
-Configure as variáveis relacionadas com a IA no ficheiro `ticket-ai-backend/.env`:
+Configure the AI-related variables in `ticket-ai-backend/.env`:
 
 ```env
 LLM_PROVIDER=gemini
@@ -86,36 +86,36 @@ GEMINI_API_KEY=your-api-key
 GEMINI_MODEL=gemini-2.0-flash
 ```
 
-Por predefinição, o backend utiliza SQLite como base de dados.
+By default, the backend uses SQLite as its database.
 
-### 3. Configurar o frontend
+### 3. Set up the frontend
 
-Numa nova janela do terminal, entre na pasta do frontend e instale as dependências:
+In a new terminal window, go to the frontend directory and install the dependencies:
 
 ```bash
 cd ticket-ai-frontend
 npm install
 ```
 
-O frontend está configurado para comunicar com o backend em `http://localhost:8000`. Se for necessário utilizar outro endereço, crie o ficheiro `ticket-ai-frontend/.env`:
+The frontend is configured to communicate with the backend at `http://localhost:8000`. If you need to use a different API URL, create `ticket-ai-frontend/.env`:
 
 ```env
 VITE_API_URL=http://localhost:8000
 ```
 
-## Executar em desenvolvimento
+## Running the application in development
 
-O backend e o frontend devem ser executados separadamente.
+The backend and frontend must be started separately.
 
 ### Backend
 
-A partir de `ticket-ai-backend`:
+From `ticket-ai-backend`:
 
 ```bash
 composer run dev
 ```
 
-O backend ficará disponível em:
+The backend will be available at:
 
 ```text
 http://localhost:8000
@@ -123,58 +123,58 @@ http://localhost:8000
 
 ### Frontend
 
-A partir de `ticket-ai-frontend`:
+From `ticket-ai-frontend`:
 
 ```bash
 npm run dev
 ```
 
-A interface ficará disponível em:
+The frontend will be available at:
 
 ```text
 http://localhost:5173
 ```
 
-O servidor de desenvolvimento do Vite encaminha os pedidos `/api` para o backend Laravel.
+The Vite development server proxies `/api` requests to the Laravel backend.
 
-## Fluxo da aplicação
+## Application flow
 
-1. O utilizador acede à interface Vue através do frontend.
-2. O utilizador cria um novo ticket de suporte.
-3. O frontend envia o ticket para a API Laravel.
-4. O backend guarda o ticket e solicita uma análise ao modelo Gemini.
-5. A análise devolve informação como categoria, prioridade e resumo.
-6. O ticket analisado é apresentado na interface.
-7. O utilizador pode filtrar os tickets ou solicitar uma nova análise de um ticket existente.
+1. The user accesses the Vue frontend.
+2. The user creates a new support ticket.
+3. The frontend sends the ticket to the Laravel API.
+4. The backend stores the ticket and sends it to the Gemini model for analysis.
+5. The analysis returns information such as the category, priority, and summary.
+6. The analyzed ticket is displayed in the interface.
+7. The user can filter tickets or request a new analysis for an existing ticket.
 
-## API disponível
+## API endpoints
 
-| Método | Endpoint | Descrição |
+| Method | Endpoint | Description |
 | --- | --- | --- |
-| `GET` | `/api/tickets` | Lista tickets, com filtros opcionais por categoria e prioridade. |
-| `POST` | `/api/tickets` | Cria e analisa um novo ticket. |
-| `POST` | `/api/tickets/{ticket}/reanalyze` | Executa novamente a análise de um ticket existente. |
+| `GET` | `/api/tickets` | Lists tickets with optional category and priority filters. |
+| `POST` | `/api/tickets` | Creates and analyzes a new ticket. |
+| `POST` | `/api/tickets/{ticket}/reanalyze` | Reanalyzes an existing ticket. |
 
-## Comandos úteis
+## Useful commands
 
 ### Backend
 
 ```bash
 cd ticket-ai-backend
 
-# Iniciar a aplicação em desenvolvimento
+# Start the application in development mode
 composer run dev
 
-# Verificar formatação do código
+# Check code formatting
 composer run lint:check
 
-# Executar análise estática
+# Run static analysis
 composer run types:check
 
-# Executar os testes
+# Run the tests
 php artisan test
 
-# Executar todas as verificações de CI
+# Run all CI checks
 composer run ci:check
 ```
 
@@ -183,17 +183,17 @@ composer run ci:check
 ```bash
 cd ticket-ai-frontend
 
-# Iniciar o servidor de desenvolvimento
+# Start the development server
 npm run dev
 
-# Validar tipos e gerar a build de produção
+# Validate types and create a production build
 npm run build
 
-# Pré-visualizar a build
+# Preview the production build
 npm run preview
 ```
 
-## Build de produção
+## Production build
 
 ### Frontend
 
@@ -202,18 +202,18 @@ cd ticket-ai-frontend
 npm run build
 ```
 
-Os ficheiros gerados serão colocados na pasta `dist`.
+The generated files will be placed in the `dist` directory.
 
 ### Backend
 
-Para preparar o backend para produção, configure corretamente o ambiente Laravel, a base de dados, a chave da API do Gemini e as variáveis de cache, sessão e filas. Consulte o README em `ticket-ai-backend/` para os detalhes específicos da API.
+To prepare the backend for production, configure the Laravel environment, database, Gemini API key, and cache, session, and queue settings correctly. See the README in `ticket-ai-backend/` for backend-specific details.
 
-## Documentação específica
+## Component documentation
 
-- [Documentação do backend](ticket-ai-backend/README.md)
-- [Documentação do frontend](ticket-ai-frontend/README.md)
+- [Backend documentation](ticket-ai-backend/README.md)
+- [Frontend documentation](ticket-ai-frontend/README.md)
 
-## Variáveis de ambiente importantes
+## Important environment variables
 
 ### Backend
 
@@ -231,24 +231,24 @@ GEMINI_MODEL=gemini-2.0-flash
 VITE_API_URL=http://localhost:8000
 ```
 
-Não versionar ficheiros `.env` nem chaves de API. Estes ficheiros já estão excluídos pelo `.gitignore`.
+Do not commit `.env` files or API keys. These files are excluded by `.gitignore`.
 
-## Testes e qualidade
+## Testing and code quality
 
-Antes de submeter alterações, recomenda-se executar as verificações do backend:
+Before submitting changes, run the backend checks:
 
 ```bash
 cd ticket-ai-backend
 composer run ci:check
 ```
 
-E validar a build do frontend:
+Then validate the frontend build:
 
 ```bash
 cd ticket-ai-frontend
 npm run build
 ```
 
-## Licença
+## License
 
-Este projeto utiliza a licença definida na aplicação backend. Consulte os ficheiros do projeto para obter mais informações.
+This project uses the license defined by the backend application. Check the project files for more information.
