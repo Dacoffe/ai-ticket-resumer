@@ -6,6 +6,8 @@ storage
 vendor
 public
 resources
+!ticket-ai-backend/resources/
+!ticket-ai-backend/resources/**
 auth.json
 Homestead.json
 Homestead.yaml
